@@ -5,8 +5,7 @@ import BreweryContainer from './Components/BreweryContainer';
 export default class App extends Component {
 
   state = {
-    breweries: [],
-    fans: []
+    breweries: []
   }
 
   componentDidMount(){
@@ -15,7 +14,8 @@ export default class App extends Component {
       .then(breweries => this.setState({breweries}))
   }
 
-  submitFan = (fan, brewery) => {
+  submitFan = (brewery, fan) => {
+    console.log(brewery)
     fetch('http://localhost:3000/fans', {
       method: "POST", 
       headers: {
@@ -24,7 +24,7 @@ export default class App extends Component {
       }, 
       body: JSON.stringify({name: fan, brewery_id: brewery.id})
     }).then(response => response.json())
-    .then(fan => this.setState({fans: [...this.state.fans, fan]}))
+    // .then(brewery => this.setState({breweries: [...this.state.breweries, brewery]}))
   }
   
   render(){
@@ -32,7 +32,7 @@ export default class App extends Component {
     return (
       <div className="App">
         <h1>Beer Connections</h1>
-        <BreweryContainer breweries={this.state.breweries} submitFan={this.submitFan} />
+        <BreweryContainer breweries={this.state.breweries} submitFan={this.submitFan}/>
       </div>
     );
   }
