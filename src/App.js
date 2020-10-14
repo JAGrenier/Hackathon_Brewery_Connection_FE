@@ -31,7 +31,6 @@ export default class App extends Component {
 
     return (
       <div className="App">
-        <h1>Beer Connections</h1>
         <BreweryContainer breweries={this.state.breweries} submitFan={this.submitFan}/>
       </div>
     );
